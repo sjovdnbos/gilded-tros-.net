@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/gilded-tros/.vs/gilded-tros
+/gilded-tros/bin/Debug/net8.0
+/GildedTros.Tests/bin/Debug/net8.0
+/GildedTros.Tests/obj
+/gilded-tros/obj
+/.vs
