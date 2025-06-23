@@ -4,18 +4,16 @@
     {
         public void Update(Item item)
         {
-            item.SellIn--;
+            item.DecreaseSellIn();
+            item.IncreaseQuality();
+
+            if (item.SellIn <= 10) item.IncreaseQuality();
+            if (item.SellIn <= 5) item.IncreaseQuality();
 
             if (item.SellIn < 0)
             {
-                item.Quality = 0;
-                return;
+                item.Quality = 0; 
             }
-
-            if (item.Quality < 50) item.Quality++;
-
-            if (item.SellIn < 10 && item.Quality < 50) item.Quality++;
-            if (item.SellIn < 5 && item.Quality < 50) item.Quality++;
         }
     }
 }
