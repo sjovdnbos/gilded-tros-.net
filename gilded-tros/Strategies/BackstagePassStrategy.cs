@@ -1,6 +1,6 @@
 ﻿namespace GildedTros.App.Strategies
 {
-    public class BackstagePassesStrategy : IUpdateStrategy
+    public class BackstagePassStrategy : IUpdateStrategy
     {
         public void Update(Item item)
         {
