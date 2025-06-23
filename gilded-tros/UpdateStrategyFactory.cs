@@ -1,26 +1,21 @@
-﻿using GildedTros.App.Strategies;
+﻿using GildedTros.App;
+using GildedTros.App.Strategies;
 
-namespace GildedTros.App
+public static class UpdateStrategyFactory
 {
-    public static class UpdateStrategyFactory
+    private static readonly Dictionary<string, IUpdateStrategy> _strategies = new()
     {
-        public static IUpdateStrategy GetStrategyFor(Item item)
-        {
-            if (item.Name == "Good Wine")
-                return new GoodWineStrategy();
+        { "Good Wine", new GoodWineStrategy() },
+        { "Backstage passes for Re:factor", new BackstagePassStrategy() },
+        { "Backstage passes for HAXX", new BackstagePassStrategy() },
+        { "B-DAWG Keychain", new LegendaryItemStrategy() },
+        { "Duplicate Code", new SmellyItemStrategy() },
+        { "Long Methods", new SmellyItemStrategy() },
+        { "Ugly Variable Names", new SmellyItemStrategy() }
+    };
 
-            if (item.Name == "Backstage passes for Re:factor"
-                || item.Name == "Backstage passes for HAXX")
-                return new BackstagePassStrategy();
-
-            if (item.Name == "B-DAWG Keychain")
-                return new LegendaryItemStrategy();
-
-            if (item.Name == "Duplicate Code" || item.Name == "Long Methods" || item.Name == "Ugly Variable Names")
-                return new SmellyItemStrategy();
-
-            // Default
-            return new NormalItemStrategy();
-        }
+    public static IUpdateStrategy GetStrategyFor(Item item)
+    {
+        return _strategies.TryGetValue(item.Name, out IUpdateStrategy? value) ? value : new NormalItemStrategy();
     }
 }
